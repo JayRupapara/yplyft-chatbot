@@ -1,0 +1,49 @@
+I’m building a full-stack e-commerce chatbot app called Uplyft E-commerce Chatbot. The backend is already built with Python Flask in the `server/` folder, and I’ve set up the frontend with Vite, React, and TailwindCSS in the `client/` folder. I need you to help me develop the frontend and integrate it with the backend. Below is the folder structure and step-by-step instructions for creating the necessary files and integrating them with the backend APIs. Use TailwindCSS for styling, `react-router-dom` for navigation, and Axios for API calls. Store the JWT token in `localStorage` for authentication. Let’s build this step by step.
+
+---
+
+### Project Structure
+📁 uplyft-chatbot/
+├── 📁 server/                 # Backend (already built)
+│   ├── app.py                 # Flask app
+│   ├── models.py              # SQLAlchemy models
+│   ├── utils/
+│   │   ├── mock_data.py       # Mock data generator
+│   ├── database.db            # SQLite database
+├── 📁 client/                 # Frontend (React + Vite + TailwindCSS)
+│   ├── 📁 src/
+│   │   ├── 📁 components/     # React components (to be created)
+│   │   │   ├── Login.js       # Login page
+│   │   │   ├── Register.js    # Register page
+│   │   │   ├── Chat.js        # Chat page
+│   │   ├── App.jsx            # Main app component
+│   │   ├── index.css          # TailwindCSS directives
+│   │   ├── main.jsx           # Entry point
+│   ├── tailwind.config.js     # TailwindCSS config
+│   ├── vite.config.js         # Vite config
+│   ├── package.json           # Dependencies
+├── README.md                  # Project documentation (to be created)
+├── 📁 docs/
+│   ├── report.md              # Project report (to be created)
+
+### Dependencies in `client/package.json`
+- Already installed: `axios`, `react-router-dom`, `tailwindcss`, `postcss`, `autoprefixer`
+
+### Backend APIs (Running at `http://localhost:5000`)
+1. `POST /auth/register`: Register a user
+   - Request: `{ username, password }`
+   - Response: `{ message: "User registered successfully" }` or `{ error: "..." }`
+2. `POST /auth/login`: Log in and get JWT token
+   - Request: `{ username, password }`
+   - Response: `{ access_token: "..." }` or `{ error: "..." }`
+3. `POST /chat`: Send a chat query (requires Authorization header with JWT)
+   - Request: `{ message }` (e.g., `{ message: "show me books under 1000" }`)
+   - Headers: `{ Authorization: "Bearer <token>" }`
+   - Response: `{ response: "..." }` (e.g., `{ response: "Found 1 product: Guess Fine (Books) - $699.93 (Rating: 1.8)" }`)
+
+---
+
+### Steps to Build the Frontend and Integrate with Backend
+
+#### Step 1: Update `client/src/index.css`
+Ensure TailwindCSS directives are present:
